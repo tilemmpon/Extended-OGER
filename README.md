@@ -125,4 +125,4 @@ Extended-OGER is licensed under GNU LESSER GENERAL PUBLIC LICENSE Version 3 like
 
 To report an issue use the GitHub issue tracker. Please provide as much information as you can.
 
-Contributions are always welcome. Open an issue to contact me. The preferred method of contribution is through a github pull request. Please note that there is a code of conduct.
+Contributions are always welcome. Open an issue to contact me. The preferred method of contribution is through a github pull request. Please note that there is a [code of conduct](https://github.com/tilemmpon/Extended-OGER/blob/master/code-of-conduct.md).
