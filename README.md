@@ -60,7 +60,7 @@ Most Linux distributions have the required dependencies listed above in their pa
 The latest stable version of Oger, version 1.2, can be cloned from the repository (git clone https://github.com/tilemmpon/Extended-OGER) and the included script in src folder can be run as follows:
 
     $ sudo python setup.py install
-or in the folder of the tarball ( Oger-1.2.tar.gz) with pip install the provided tarball:
+or in the folder of the tarball (provided here: https://github.com/tilemmpon/Extended-OGER/blob/master/Oger-1.2.tar.gz) with pip install the tarball:
 
     $ pip install Oger-1.2.tar.gz
 I strongly reccommend to use anaconda for python development. In an anaconda environment install the tarball like above using pip.
