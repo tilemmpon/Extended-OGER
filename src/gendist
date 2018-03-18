@@ -1,0 +1,15 @@
+#!/bin/bash
+
+./cleandist
+python -V
+python ./setup.py sdist --manifest-only
+mv MANIFEST MANIFEST2
+echo -ne 'COPYING\nCOPYING.LESSER\nREADME\nINSTALL\n' > MANIFEST1
+ls Oger/examples/*py >> MANIFEST1
+ls Oger/examples/java_python_interface/* >> MANIFEST1
+sed -i .bak -e '/feedback_and_external_input/d' -e '/fbflow/d' -e '/hierarchical_esn/d' -e '/narma30_demo_continuous/d' -e '/narma30_demo_network/d' MANIFEST1
+rm MANIFEST1.bak
+cat MANIFEST1 MANIFEST2  > MANIFEST
+rm MANIFEST1 MANIFEST2 
+python ./setup.py sdist --formats=gztar
+python ./setup.py bdist_wininst 
