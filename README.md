@@ -77,35 +77,41 @@ Unfortunately, I have not tested how Oger can be installed in Python(x,y). If pi
 
 ## Small example usage
 
-Bellow there is a small example (from the original source of Oger) how to use Oger. Some jupyter notebooks containing benchmarks with more examples and details can be found in the [benchmarks folder](https://github.com/tilemmpon/Extended-OGER/tree/master/benchmarks). The MDP tutorial is strongly reoccomended before you start working with Oger.
+Bellow there is a small example how to use Oger (and Extended-OGER). Some jupyter notebooks containing benchmarks with more examples and details can be found in the [benchmarks folder](https://github.com/tilemmpon/Extended-OGER/tree/master/benchmarks). The MDP tutorial is strongly reoccomended before you start working with Oger.
 
 Tthis loads all methods and Oger nodes into the namespace Oger:
 
     import Oger
     import matplotlib.pyplot as plt
+    import mdp
 The usual experiment consists of generating the dataset, constructing your flow (learning architecture) by concatenating nodes into a feedforward graph-like structure, and then simply training and appliying it or performing some optimization or parameter sweeps. You can create a node by simpy instantiating it:
 
-    resnode = Oger.nodes.ReservoirNode(output_dim = 100) 
+    reservoir = Oger.nodes.ReservoirNode(output_dim=100, input_scaling=0.05)
+    Oger.utils.make_inspectable(Oger.nodes.ReservoirNode)
 
 This creates a reservoir node of 100 neurons. To test the newly added nodes in Extended Oger use one of the following examples instead:
 
-    resnode = Oger.nodes.CyclicSORMsReservoir(output_dim = 100)
+    reservoir = Oger.nodes.CyclicSORMsReservoir(output_dim=100, input_scaling=0.05)
+    Oger.utils.make_inspectable(Oger.nodes.CyclicSORMsReservoir)
 
-    resnode = Oger.nodes.SparseAndOrthogonalMatricesReservoir(output_dim = 100)
+    reservoir = Oger.nodes.SparseAndOrthogonalMatricesReservoir(output_dim=100, input_scaling=0.05)
+    Oger.utils.make_inspectable(Oger.nodes.SparseAndOrthogonalMatricesReservoir)
 
-    resnode = Oger.nodes.DelayLineReservoirNode(output_dim = 100)
+    reservoir = Oger.nodes.DelayLineReservoirNode(output_dim=100, input_scaling=0.05)
+    Oger.utils.make_inspectable(Oger.nodes.DelayLineReservoirNode)
 
 Let's create a ridge regression readout node:
 
-    readoutnode = Oger.nodes.RidgeRegressionNode()
+    readout = Oger.nodes.RidgeRegressionNode()
 
 Flows can be easily created from nodes as follows:
 
-    flow = resnode + readoutnode 
+    flow = mdp.Flow([reservoir, readout], verbose=1)
+    Oger.utils.enable_washout(Oger.nodes.RidgeRegressionNode, 200) # enable washout of first 200 states of ESN
 
 For more examples on how to construct flows, including more complex architectures, please see the MDP tutorial. Next, we can create data from one of the built-in datasets, a 30th order nonlinear autoregressive moving average system (NARMA). The input to the system is uniform white noise, the output is given by the NARMA system. 
 
-    x,y = Oger.datasets.narma30()
+    [x, y] = Oger.datasets.narma30()
 
 By default, this returns two lists of ten 1D timeseries, the input and corresponding output, of 1000 timesteps each. Please see the API documentation for the arguments to this and other functions. 
 
@@ -116,15 +122,38 @@ Flows are trained in a feedforward way, node by node starting from the front. In
 We can now train the flow to reproduce the output given the input like so:
 
     flow.train(data)
+    
+Calculate accuracy in test data
+
+    testout = flow(x[-1])
+    
+Check the various error measures for the test data:
+
+    print "NRMSE: " + str(Oger.utils.nrmse(y[-1], testout))
+    print "NMSE: " + str(Oger.utils.nmse(y[-1], testout))
+    print "MSE: " + str(Oger.utils.mse(y[-1], testout))
 
 We can now see how our trained architecture performs on unseen data:
 
-    plt.figure()
-    plt.plot(flow(x[-1]))
-    plt.plot(y[-1])
+    #plot the input
+    plt.subplot(nx, ny, 1)
+    plt.plot(x[0])
+
+    #plot everything
+    plt.subplot(nx, ny, 2)
+    plt.plot(trainout, 'r')
+    plt.plot(y[0], 'b')
+
+    plt.subplot(nx, ny, 3)
+    plt.plot(testout, 'r')
+    plt.plot(y[-1], 'b')
+
+    plt.subplot(nx, ny, 4)
+    plt.plot(reservoir.inspect()[-1])
+    #plt.plot(reservoir.states[:10])
     plt.show()
     
-The classifier output should be similar to the original data.
+The classifier output should be similar to the original test data.
 
 ## Acknowledgement
 
