@@ -1,6 +1,9 @@
 # Extended-OGER
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](http://www.repostatus.org/badges/latest/active.svg)
+[![lifecycle](https://img.shields.io/badge/lifecycle-dormant-blue.svg)](https://www.tidyverse.org/lifecycle/#dormant)
 
 ## Introduction
 
@@ -29,7 +32,7 @@ To the original Oger many new ESN models presented in the literature have been a
 
 ## Documentation
 
-Full documentation can be found `here <https://TODO>`_.
+Full documentation for every function and class can be found in the source code.
 
 
 ## Installation
