@@ -86,7 +86,15 @@ The usual experiment consists of generating the dataset, constructing your flow 
 
     resnode = Oger.nodes.ReservoirNode(output_dim = 100) 
 
-This creates a reservoir node of 100 neurons. Let's create a ridge regression readout node:
+This creates a reservoir node of 100 neurons. To test the newly added nodes in Extended Oger use one of the following examples instead:
+
+    resnode = Oger.nodes.CyclicSORMsReservoir(output_dim = 100)
+
+    resnode = Oger.nodes.SparseAndOrthogonalMatricesReservoir(output_dim = 100)
+
+    resnode = Oger.nodes.DelayLineReservoirNode(output_dim = 100)
+
+Let's create a ridge regression readout node:
 
     readoutnode = Oger.nodes.RidgeRegressionNode()
 
