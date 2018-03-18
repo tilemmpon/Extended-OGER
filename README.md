@@ -28,7 +28,7 @@ Oger is a Python toolbox for rapidly building, training and evaluating hierarchi
  - Sparse and orthogonal matrices reservoir (SORM) node *
  - Cyclic SORMs reservoir (CyclicSORM) node *
 
-To the original Oger many new ESN models presented in the literature have been added by Tilemachos Bontzorlos. The contribution is marked with star (*) in the list above. The original Oger can be acquired from the original BitBucket repository (https://bitbucket.org/benjamin_schrauwen/organic-reservoir-computing-engine).
+Extended-OGER as suggested by its name includes the original Oger and many new ESN models presented in the literature have been added by author. The contribution is marked with star (*) in the list above. The original Oger can be acquired from the original BitBucket repository (https://bitbucket.org/benjamin_schrauwen/organic-reservoir-computing-engine).
 
 ## Documentation
 
@@ -124,7 +124,7 @@ The classifier output should be similar to the original data.
 
 ## Acknowledgement
 
-I would like to thank all the authors for the original Oger (available in https://bitbucket.org/benjamin_schrauwen/organic-reservoir-computing-engine), which I have extended. If you use this or the original software please cite it as:
+I would like to thank all the authors for the original Oger (available in https://bitbucket.org/benjamin_schrauwen/organic-reservoir-computing-engine), which I have extended. Most of the functionality of original Oger has been retained. If you use this or the original software please cite it using the publication of the original Oger authors:
 
     Verstraeten, D., Schrauwen, B., Dieleman, S., Brakel, P., Buteneers, P., & Pecevski, D. (2012). Oger: modular learning architectures for large-scale sequential processing. Journal of Machine Learning Research, 13(Oct), 2995-2998.
 
