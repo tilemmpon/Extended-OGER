@@ -74,7 +74,7 @@ Unfortunately, I have not tested how Oger can be installed in Python(x,y). If pi
 
 ## Small example usage
 
-Bellow there is a small example (from the original source of Oger) how to use Oger. Some benchmarks with more details can be found in the benchmarks folder. The MDP tutorial is strongly reoccomended before you start working with Oger.
+Bellow there is a small example (from the original source of Oger) how to use Oger. Some jupyter notebooks containing benchmarks with more examples and details can be found in the [benchmarks folder](https://github.com/tilemmpon/Extended-OGER/tree/master/benchmarks). The MDP tutorial is strongly reoccomended before you start working with Oger.
 
 Tthis loads all methods and Oger nodes into the namespace Oger:
 
