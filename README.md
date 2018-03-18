@@ -82,6 +82,7 @@ Bellow there is a small example (from the original source of Oger) how to use Og
 Tthis loads all methods and Oger nodes into the namespace Oger:
 
     import Oger
+    import matplotlib.pyplot as plt
 The usual experiment consists of generating the dataset, constructing your flow (learning architecture) by concatenating nodes into a feedforward graph-like structure, and then simply training and appliying it or performing some optimization or parameter sweeps. You can create a node by simpy instantiating it:
 
     resnode = Oger.nodes.ReservoirNode(output_dim = 100) 
@@ -118,8 +119,11 @@ We can now train the flow to reproduce the output given the input like so:
 
 We can now see how our trained architecture performs on unseen data:
 
-    plot(flow(x[-1]))
-    plot(y[-1]) 
+    plt.figure()
+    plt.plot(flow(x[-1]))
+    plt.plot(y[-1])
+    plt.show()
+    
 The classifier output should be similar to the original data.
 
 ## Acknowledgement
